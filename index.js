@@ -2,6 +2,7 @@
 const express = require("express");
 const request = require("request");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 // Basic configuration
 const port = process.env.PORT || 5000;
@@ -24,6 +25,13 @@ const generateRandomString = function (length) {
 
   return randomText;
 };
+
+// CORS
+app.use(
+  cors({
+    origin: process.env.CORS_ALLOW_ACCESS_FROM,
+  })
+);
 
 /**
  * Routes

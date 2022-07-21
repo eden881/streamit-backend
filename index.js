@@ -11,15 +11,15 @@ dotenv.config();
 const spotify_client_id = process.env.SPOTIFY_CLIENT_ID;
 const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 const spotify_redirect_uri = process.env.SPOTIFY_CALLBACK_URI;
-var access_token = "";
+let access_token = "";
 
 const app = express();
 
 const generateRandomString = function (length) {
-  var randomText = "";
+  let randomText = "";
   const possibleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-  for (var i = 0; i < length; i++) {
+  for (let i = 0; i < length; i++) {
     randomText += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
   }
 
@@ -29,7 +29,7 @@ const generateRandomString = function (length) {
 // CORS
 app.use(
   cors({
-    origin: process.env.CORS_ALLOW_ACCESS_FROM,
+    origin: process.env.FRONTEND_URI,
   })
 );
 
@@ -37,7 +37,7 @@ app.use(
  * Routes
  */
 
-app.get("/auth/login", (req, res) => {
+app.get("/auth/login", (_req, res) => {
   const scope = "streaming user-read-email user-read-private";
   const state = generateRandomString(16);
 
@@ -49,7 +49,7 @@ app.get("/auth/login", (req, res) => {
     state: state,
   });
 
-  res.redirect("https://accounts.spotify.com/authorize/?" + auth_query_parameters.toString());
+  res.redirect(`https://accounts.spotify.com/authorize/?${auth_query_parameters.toString()}`);
 });
 
 app.get("/auth/callback", (req, res) => {
@@ -72,12 +72,12 @@ app.get("/auth/callback", (req, res) => {
   request.post(authOptions, function (error, response, body) {
     if (!error && response.statusCode === 200) {
       access_token = body.access_token;
-      res.redirect(req.headers.referer);
+      res.redirect(process.env.FRONTEND_URI);
     }
   });
 });
 
-app.get("/auth/token", (req, res) => {
+app.get("/auth/token", (_req, res) => {
   res.json({
     access_token: access_token,
   });

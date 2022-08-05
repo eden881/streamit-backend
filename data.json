@@ -1,0 +1,44 @@
+{
+  "songs": [
+    {
+      "id": 4,
+      "title": "Me Porto Bonito",
+      "artist": "Bad Bunny",
+      "album": "Un Verano Sin Ti",
+      "image": "/images/4.jpg",
+      "audio": "/songs/4.mp3"
+    },
+    {
+      "id": 5,
+      "title": "Cute Boy",
+      "artist": "Nunu",
+      "album": "Cute Boy",
+      "image": "/images/5.jpg",
+      "audio": "/songs/5.mp3"
+    },
+    {
+      "id": 6,
+      "title": "עזוב אותי מטכנו",
+      "artist": "Doli & Penn",
+      "album": "עזוב אותי מטכנו",
+      "image": "/images/6.jpg",
+      "audio": "/songs/6.mp3"
+    },
+    {
+      "id": 7,
+      "title": "היי בייב",
+      "artist": "Tuna",
+      "album": "מזרח פרוע",
+      "image": "/images/7.jpg",
+      "audio": "/songs/7.mp3"
+    },
+    {
+      "id": 8,
+      "title": "מי זאת",
+      "artist": "Anna Zak",
+      "album": "מי זאת",
+      "image": "/images/8.jpg",
+      "audio": "/songs/8.mp3"
+    }
+  ]
+}
